@@ -1383,6 +1383,16 @@ define service{
 
 - [Curso de monitoreo con Nagios Core](https://www.youtube.com/playlist?list=PLf0g2cV4iCkE9vRbsSoe5f428zMNlasKd)
 
+- [Extra packages for Enterprise Linux](https://docs.fedoraproject.org/en-US/epel/#How_can_I_use_these_extra_packages.3F)
+
+- [Nagios Core - Installing Nagios Core From Source](https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-source-96.html#RHEL)
+
+- [Nagios Plugins](https://support.nagios.com/kb/article.php?id=569#CentOS)
+
+- [How to install pnp4nagios to Display Graphics in Nagios?](https://sysadminote.com/how-to-install-pnp4nagios-to-display-graphics-in-nagios/)
+
+- [pnp4nagios #148 issue](https://github.com/lingej/pnp4nagios/issues/148)
+
 
 
 
