@@ -86,6 +86,27 @@ En la máquina virtual:
 wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
 ```
 
+3. Descomprimir los archivos con:
+
+<code>tar -xzvf nagios-4.4.7.tar.gz</code>
+
+4. Ingresar al directorio de los archivos descomprimidos anteriormente e ingresar el siguiente comando:
+
+<code>./configure</code>
+
+5. Compilar Nagios con el comando:
+
+<code>make all</code>
+
+6. Hacer la instalación con:
+
+<code>make install</code>
+
+7. Continuar con: <code>make install-commandmode</code>, <code>make install-config</code>, <code>make install webconf</code>
+
+
+
+
 <a name="22-inst"></a>
 ### 2.2 Instalación de las dependencias necesarias para instalar Nagios
 
