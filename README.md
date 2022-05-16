@@ -102,9 +102,37 @@ wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.
 
 <code>make install</code>
 
-7. Continuar con: <code>make install-commandmode</code>, <code>make install-config</code>, <code>make install webconf</code>
+7. Continuar con: 
 
+<code>make install-commandmode</code>
 
+<code>make install-config</code>
+
+<code>make install webconf</code>
+
+8. Habilitar los servicios de Nagios y HTTPD con: 
+
+<code>systemctl enable nagios</code>
+
+<code>systemctl enable httpd</code>
+
+9. Crear un usuario y contraseña para acceder a Nagios con: 
+
+<code>htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin</code>
+
+10. Activar los servicios con:
+
+<code>service nagios start</code>
+
+<code>service httpd start</code>
+
+Se puede verificar la correcta activación con:
+
+<code>service nagios status</code>
+
+<code>service httpd status</code>
+
+<code>systemctl is-enabled httpd</code>
 
 
 <a name="22-inst"></a>
