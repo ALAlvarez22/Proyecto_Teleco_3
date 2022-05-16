@@ -421,7 +421,7 @@ templates en uso.**
 
 Para solucionar los siguientes problemas que aparecen al entrar a la web de Nagios proceda así
 
-<img src="/home/anderson/Imágenes/nagios.png">
+<img src="https://github.com/ALAlvarez22/Proyecto_Teleco_3/blob/master/nagios.png">
 
 
 
