@@ -80,6 +80,10 @@ Si el comando inmediatamente anterior no funciona, intentar con:
 https://github.com/NagiosEnterprises/nagioscore/releases
 ```
 
+En la máquina virtual:
+
+<code>wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz</code>
+
 <a name="22-inst"></a>
 ### 2.2 Instalación de las dependencias necesarias para instalar Nagios
 
