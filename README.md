@@ -34,6 +34,8 @@
 
 - Instalar vim y net-tools.
 
+  $ yum install -y vim net-tools
+
 - Deshabilitar SELinux.
 
 - En caso de que el Firewall esté corriendo, habilitar los puertos 80 y 443.
