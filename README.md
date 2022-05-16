@@ -333,6 +333,94 @@ allowed_host=127.0.0.0.1,::1,192.168.50.3
 💡 **Puede verificar la comunicación del Nagios entre el cliente y el servidor desde el servidor con** <code>/usr/local/nagios/libexec/check_nrpe -H 192.168.50.2</code>. **En caso de estar todo correctamente configurado, la respuesta es la versión del NRPE que encuentra en el cliente.**
 
 
+<a name="4-moni"></a>
+## 4. Monitoreo básico del cliente
+
+<a name="41-defs"></a>
+## 4.1 Definición en el servidor
+
+1. Ingresar al directorio <code>/usr/local/nagios/etc/objects</code>
+
+2. Crear y editar el fichero <code>linux.cfg</code>
+
+```
+########## Definicion de servidores ###########
+
+define host{
+        use                 linux-server        #template de teplates.cfg a utilizar
+        host_name           cliente_linux   
+        alias               Linux Centos
+        check_interval      1                   #intervalo en mins con que es monitoreado
+        address             192.168.50.2        #dirección ip del host
+}
+
+########## Definicion de servicios ###########
+define service{
+        use                     generic-service         #template de teplate.cfg a utilizar
+        host_name               cliente_linux
+        service description     Hard Disk               #opcional
+        check_interval          1
+        check_command           check_nrpe!check_hda1
+}
+
+define service{
+        use                     generic-service
+        host_name               cliente_linux
+        service_description     Uptime
+        check_interval          1
+        check_command           check_nrpe!check_uptime
+}
+
+define service{
+        use                     generic-service
+        host_name               cliente_linux
+        service_description     Current Load
+        check_interval          1
+        check_command           check_nrpe!check_load
+}
+
+define service{
+        use                     generic-service
+        host_name               cliente_linux
+        service_description     Swap
+        check_interval          1
+        check_command           check_nrpe!check_swap
+}
+
+define service{
+        use                     generic-service
+        host_name               cliente_linux
+        service_description     Current Users
+        check_interval          1
+        check_command           check_nrpe!check_users
+}
+       
+```
+
+💡 **Una opción para no establecer el check_interval en todas las definiciones es editar los templetes de** <code>linux-server</code> **y**
+<code>generic-service</code> **en el archivo** <code>/usr/local/nagios/etc/objects/templates.cfg</code> **y la propiedad de** <code>check_interval</code> **para los
+templates en uso.**
+
+3. En el directorio <code>/usr/local/nagios/etc</code> editar el archivo <code>nagios.cfg</code> y agregar el archivo creado como uno de los archivos de configuración.
+
+4. Verifique que no hayan errores en las sentencias de los archivos de nagios con los comandos:
+
+<code>/usr/local/nagios/bin/nagios -v</code>
+
+</code>/usr/local/nagios/etc/nagios.cfg</code>
+
+💡 **Puede editar el archivo** <code>.bashrc</code> **en el home de root y crear el alias** <code>nagioscheck='/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg’</code>. **Termine con un** <code>source .bashrc</code> **para guardar los cambios.**
+
+5. Edite el archivo <code>/usr/local/nagios/etc/cgi.cfg</code> bajando el refresh rate a diez segundos <code>refresh_rate=10</code>
+
+6. Reiniciar el servicio de Nagios.
+
+
+<a name="42-confcll"></a>
+## 4.2 Configuración del cliente
+
+
+
 
 
 
