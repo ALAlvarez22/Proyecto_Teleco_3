@@ -1277,7 +1277,7 @@ https://sourceforge.net/projects/pnp4nagios/files/
 
 en la máquina virtual ejecutar:
 
-<code>wget https://downloads.sourceforge.net/project/pnp4nagios/PNP-0.6/pnp4nagios-0.6.26.tar.gz</
+<code>wget https://downloads.sourceforge.net/project/pnp4nagios/PNP-0.6/pnp4nagios-0.6.26.tar.gz</code>
 
 3. Descomprimir el archivo descargado con <code>tar -xzvf pnp4nagios-0.6.26.tar.gz</code>
 
