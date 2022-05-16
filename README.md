@@ -225,9 +225,119 @@ define command {
 
 **$ARGS1$** Son los argumentos y corresponde al plugin que se desea verificar.
 
+
 7. Habilitar por defecto el servicio de Nagios con:
 
 <code>chkconfig nagios on</code>
+
+
+<a name="3-confc"></a>
+## 3. Configuraciones del cliente
+
+<a name="31-inscl"></a>
+## 3.1 Instalación de las dependencias necesarias para instalar Nagios
+
+```
+wget        openssl-devel       glibc-common
+gcc         glibc               perl-Net-SNMP
+perl
+
+```
+
+1. Ejecutar el comando:
+
+<code>yum install -y gcc glibc glibc-common openssl openssl-devel perl wget</code>
+
+2. Crear un usuario Nagios con:
+
+<code>useradd nagios</code>
+
+
+<a name="32-instcl"></a>
+## 3.2 Instalación de plugins en el cliente
+
+1. Obtener los plugins de:
+
+```
+https://github.com/nagios-plugins/nagios-plugins/releases
+```
+
+En la máquina virtual ejecutar el siguiente comando:
+
+```
+wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+```
+
+2. Descomprimir los archivos con:
+
+<code>tar -xzvf nagios-plugins-4.4.7.tar.gz</code>
+
+3. Dentro del directorio del archivo descomprimido se ingresa el comando:
+
+<code>./configure</code>
+
+4. Hacer la instalación con:
+
+<code>make install</code>
+
+5. Reiniciar el servicio de Nagios.
+
+💡 **Los plugins se instalan en el directorio** <code>/usr/local/nagios/libexec/</code> **y dentro del directorio se puede ejecutar el comando**
+<code>./plugin_name --help</code> **para ver como se usa dicho plugin.**
+
+
+<a name="33-descn"></a>
+## 3.3 Descarga de NRPE
+
+1. Obtener el NRPE de:
+
+```
+https://github.com/NagiosEnterprises/nrpe/releases
+```
+
+En la máquina virtual:
+
+```
+wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+```
+
+2. Descomprimir los archivos con:
+
+<code>tar -xzvf nrpe-4.0.3</code>
+
+3. Dentro del directorio descomprimido se ingresa el comando:
+
+<code>./configure</code>
+
+💡 **En NRPE funciona en el puerto 5666, por lo que en todos los clientes donde se vaya a instalar el NRPE con los plugins
+se debe habilitar este puerto en los plugins.**
+
+4. Ejecutar:
+
+<code>make all</code>
+
+<code>make install</code>
+
+<code>make install-config</code>
+
+<code>make install-init</code>
+
+5. Dirigirse al directorio <code>/usr/local/nagios/etc</code> y editar el archivo <code>nrpe.cfg</code> para agregar el servidor Nagios como host permitido.
+
+```
+allowed_host=127.0.0.0.1,::1,192.168.50.3
+```
+
+6. Iniciar el servicio de NRPE con <code>service nrpe start</code> y habilitar el servicio de arranque con <code>systemctl enable nrpe</code>
+
+💡 **Puede verificar la comunicación del Nagios entre el cliente y el servidor desde el servidor con** <code>/usr/local/nagios/libexec/check_nrpe -H 192.168.50.2</code>. **En caso de estar todo correctamente configurado, la respuesta es la versión del NRPE que encuentra en el cliente.**
+
+
+
+
+
+
+
 
 
 
