@@ -4,14 +4,13 @@
 
 ## Tabla de contenido
 
-- [1. Introduction](#1-introduction)
-  * [1.1 Purpose](#11-purpose)
-  * [1.2 Scope](#12-scope)
-  * [1.3 Acronyms](#13-acronyms)
-  * [1.4 References](#14-references)
-    + [1.4.1 Internal References](#141-internal-references)
-    + [1.4.2 External References](#142-external-references)
-  * [1.5 Overview](#15-overview)
+- [1. Requerimientos](#1-req)
+- [2. Pruebas mínimas esperadas}](#2-pru)
+- [3. Entregables](#3-ent)
+- [4. Conceptos teóricos](#4-con)
+  * [4.1 Estructura de directorios de Nagios](#41-est)
+  * [4.2 Objetos que se pueden monitorear](#42-obj)
+  * [4.3 Checks](#43-che)
 
 
 
