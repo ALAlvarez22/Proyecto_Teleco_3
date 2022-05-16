@@ -2,10 +2,13 @@
 
 # Monitoreo de infraestructura con Nagios
 
-# Tabla de contenido
+## Tabla de contenido
 
 1. [ Requerimientos ](#des)
-2. [ Pruebeas mínimas esperadas ](#pru)
+2. [ Pruebas mínimas esperadas ](#pru)
+3. [ Entregables ](#Ent)
+4. [ Conceptos teoricos ](#Conc)
+⋅⋅⋅[ Estructura de directorios de Nagios ](#Esc)
 
 
 
