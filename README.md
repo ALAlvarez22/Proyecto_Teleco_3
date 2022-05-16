@@ -34,11 +34,14 @@
 
 - Instalar vim y net-tools.
 
-  <code>$ yum install -y vim net-tools</code>
+  <code>yum install -y vim net-tools</code>
 
-- Deshabilitar SELinux.
+- Deshabilitar SELinux en el directorio: <code>/etc/selinux/config</code>
 
 - En caso de que el Firewall esté corriendo, habilitar los puertos 80 y 443.
+
+  <code>firewall-cmd --add-port=80/tcp --permanet</code>
+  <code>firewallcmd --add-port=443/tcp --permanet</code>
 
 
 
