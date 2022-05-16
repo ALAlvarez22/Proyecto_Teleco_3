@@ -27,6 +27,14 @@
   * [5.5 Instalar plugin de la comunidad de Nagios para monitorear la memoria RAM de los clientes Linux](#55-insplu)
     + [5.5.1 Instalación de las dependencias necesarias para instalar Nagios](#551-insdep)
     + [5.5.2 Instalación de plugins en el servidor](#552-inspser)
+  * [5.6 Monitoreo del servicio de Apache (HTTP)](#56-insplu)
+    + [5.6.1 Configuración del cliente](#561-confcli)
+    + [5.6.2 Configuración del servidor](#562-confser)
+  * [5.7 Cambiar la apariencia de Nagios](#57-apar)
+  * [5.8 Gráficos con PNP4Nagios](#58-grafic)
+    + [5.8.1 Configuración en el servidor](#581-confserver)
+- [6. Bibliografía](#6-bibl)
+
 
 
 
