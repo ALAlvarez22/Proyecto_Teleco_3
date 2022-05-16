@@ -419,8 +419,9 @@ templates en uso.**
 <a name="42-confcll"></a>
 ## 4.2 Configuración del cliente
 
+Para solucionar los siguientes problemas que aparecen al entrar a la web de Nagios proceda así
 
-
+<img src="/home/anderson/Imágenes/nagios.png">
 
 
 
