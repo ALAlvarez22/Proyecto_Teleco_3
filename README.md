@@ -2,4 +2,10 @@
 
 # Monitoreo de infraestructura con Nagios
 
+# Tabla de contenido
+
+1. [ Requerimientos ](#des)
+2. [ Pruebeas mínimas esperadas ](#pru)
+
+
 
