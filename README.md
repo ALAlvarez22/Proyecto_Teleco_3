@@ -62,11 +62,22 @@ gd-devel net-snmp</code>
 
 <code>yum --enablerepo=powertools,epel install perl-Net-SNMP</code>
 
-Si el comando inmediatamente anterior no funciona intentar con:
+Si el comando inmediatamente anterior no funciona, intentar con:
 
 <code>yum config-manager --enable powertools</code>
 
 <code>yum install perl-Net-SNMP</code>
+
+1. Crear usuario un usuario Nagios y agregarlo como grupo secundario con:
+
+<code>useradd nagios</code>
+
+<code>usermod -a -G nagios apache</code>
+
+2. Obtener los binarios para compilar Nagios desde:
+
+[Link to Nagios](https://github.com/NagiosEnterprises/nagioscore/releases)
+
 
 <a name="22-inst"></a>
 ### 2.2 Instalación de las dependencias necesarias para instalar Nagios
