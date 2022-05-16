@@ -30,7 +30,7 @@
 <a name="1-prep"></a>
 ## 1. Preparación de las máquinas virtuales
 
-- Crear un Vagrantfile con un cliente y un servidor
+- Crear un Vagrantfile con un cliente y un servidor.
 
 - Instalar vim y net-tools.
 
@@ -44,7 +44,28 @@
 
   <code>firewallcmd --add-port=443/tcp --permanet</code>
 
+<a name="2-conf"></a>
+## 2. Configuraciones iniciales del servidor
 
+<a name="21-ins"></a>
+### 2.1 Instalación de las dependencias necesarias para instalar Nagios
+
+```
+gettext      | wget  | net-snmp-utils | openssl-devel
+glibc-common | unzip | perl           | epel-release
+gcc          | php   | gd             | automake
+```
+- gettext wget net-snmp-utils openssl-devel
+glibc-common unzip perl epel-release
+gcc php gd automake
+autoconf httpd make glibc
+gd-devel net-snmp perl-Net-SNMP
+
+<a name="22-inst"></a>
+### 2.2 Instalación de las dependencias necesarias para instalar Nagios
+
+<a name="23-desc"></a>
+### 2.3 Instalación de las dependencias necesarias para instalar Nagios
 
 
 
