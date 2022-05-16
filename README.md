@@ -41,6 +41,7 @@
 - En caso de que el Firewall esté corriendo, habilitar los puertos 80 y 443.
 
   <code>firewall-cmd --add-port=80/tcp --permanet</code>
+
   <code>firewallcmd --add-port=443/tcp --permanet</code>
 
 
