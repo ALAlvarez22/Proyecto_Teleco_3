@@ -30,13 +30,13 @@
 <a name="1-prep"></a>
 ## 1. Preparación de las máquinas virtuales
 
-1. Crear un Vagrantfile con un cliente y un servidor
+- Crear un Vagrantfile con un cliente y un servidor
 
-2. Instalar vim y net-tools
+- Instalar vim y net-tools.
 
-3. Deshabilitar SELinux 
+- Deshabilitar SELinux.
 
-4. En caso de que el Firewall esté corriendo, habilitar los puertos 80 y 443 con
+- En caso de que el Firewall esté corriendo, habilitar los puertos 80 y 443.
 
 
 
