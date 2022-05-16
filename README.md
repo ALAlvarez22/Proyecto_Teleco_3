@@ -27,8 +27,20 @@
   * [8.1 Configuración en el servidor](#81-confserver)
 - [9. Bibliografía](#9-bibl)
 
-<a name="1-req"></a>
-## 1. Requerimientos
+<a name="1-prep"></a>
+## 1. Preparación de las máquinas virtuales
+
+1. Crear un Vagrantfile con un cliente y un servidor
+
+2. Instalar vim y net-tools
+
+3. Deshabilitar SELinux 
+
+4. En caso de que el Firewall esté corriendo, habilitar los puertos 80 y 443 con
+
+
+
+
 
 
 
