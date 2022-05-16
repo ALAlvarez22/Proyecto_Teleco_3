@@ -165,7 +165,7 @@ wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.
 5. Reiniciar el servicio de Nagios.
 
 
-💡**Los plugins se instalan en el directorio** <code>/usr/local/nagios/libexec/</code> **y dentro del directorio se puede ejecutar el comando**
+💡 **Los plugins se instalan en el directorio** <code>/usr/local/nagios/libexec/</code> **y dentro del directorio se puede ejecutar el comando**
 <code>./plugin_name --help</code> **para ver como se usa dicho plugin.**
 
 <a name="23-desc"></a>
@@ -191,14 +191,40 @@ wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.
 
 <code>./configure</code>
 
-**En NRPE funciona en el puerto 5666, por lo que en todos los clientes donde se vaya a instalar el NRPE con los plugins
+💡 **En NRPE funciona en el puerto 5666, por lo que en todos los clientes donde se vaya a instalar el NRPE con los plugins
 se debe habilitar este puerto en los plugins.**
 
+4. Ejecutar:
 
+<code>make check_nrpe</code>
 
+Para compilar el comando:
 
+<code>check nrpe</code>
 
+5. Instalar el plugin de NRPE con el comando:
 
+<code>make install-plugin</code>
+
+6. Dirigirse al directorio <code>/usr/local/nagios/etc/objects/</code> y editar el archivo <code>commands.cfg</code> para crear el comando con el que Nagios pueda usar el NRPE recien configurado.
+
+```
+
+define command {
+    command_name    check_nrpe
+    command_line    $USER1$/check_nrpe -H $HOSTADDESS$ -c $ARGS1$
+}
+
+```
+
+💡 **$USER1$** es una variable que indica /usr/local/nagios/libexec
+   **check_nrpe** es el comando compilado con el que Nagios va a checkear el NRPE en los clientes
+   **$HOSADDRESS$** es la dirección IP del host que se está monitoreando
+   **$ARGS1$** Son los argumentos y corresponde al plugin que se desea verificar.
+
+7. Habilitar por defecto el servicio de Nagios con:
+
+<code>chkconfig nagios on</code>
 
 
 
