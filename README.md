@@ -76,8 +76,9 @@ Si el comando inmediatamente anterior no funciona, intentar con:
 
 2. Obtener los binarios para compilar Nagios desde:
 
-[Link to Nagios](https://github.com/NagiosEnterprises/nagioscore/releases)
-
+```
+https://github.com/NagiosEnterprises/nagioscore/releases
+```
 
 <a name="22-inst"></a>
 ### 2.2 Instalación de las dependencias necesarias para instalar Nagios
