@@ -18,8 +18,8 @@
   * [4.2 Configuración del cliente](#42-confcll)
 - [5. Instalar plugin de la comunidad de Nagios para monitorear la memoria RAM de los clientes Linux](#5-insplu)
   * [5.1 Configuración en el cliente](#51-insdep)
-  * [5.2 COnfiguración en el servidor](#52-inspser)
-- [6. Monitoreo del servicio de Apache (HTTP)](#6-insplu)
+  * [5.2 Configuración en el servidor](#52-inspser)
+- [6. Monitoreo del servicio de Apache (HTTP)](#6-insa)
   * [6.1 Configuración del cliente](#61-confcli)
   * [6.2 Configuración del servidor](#62-confser)
 - [7. Cambiar la apariencia de Nagios](#7-apar)
@@ -878,6 +878,32 @@ define service{
 2. Reiniciar el servicio de NRPE.
 
 
+<a name="6-insa"></a>
+## 6. Monitoreo del servicio de Apache
+
+Del servicio HTTP se puede:
+
+- Monitorear que el proceso exista y esté corriendo o no.
+
+- Monitorear el puerto en el que opera Apache.
+
+- Monitorear que la página de Apache sirve esté disponible.
+
+- Monitorear el tiempo de respuesta del servicio.
+
+- Monitorear los slots del servicio.
+
+  * Cantidad de slots ocupados.
+
+  * Cantidad de slots disponibles.
+
+  * Cantidad de slots inactivos.
+
+<a name="61-confcli"></a>
+### 6.1 Configuración del cliente
+
+<a name="62-confser"></a>
+### 6.2 Configuración del servidor
 
 
 
