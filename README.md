@@ -1248,4 +1248,23 @@ define service{
 
 10. Reiniciar el servicio de Nagios.
 
+<a name="7-apar"></a>
+## 7. Cambiar la apariencia de Nagios
+
+1. Ejecutar el comando <code>wget https://github.com/ynlamy/vautour-style/releases/latest/download/vautour_style.zip</code>
+
+2. Hacer una copia de la pagina actual con <code>tar -czvf backup-pagina.tar.gz /usr/local/nagios/share/</code>
+
+3. Ejecutar el comando <code>unzip -d /usr/local/nagios/share/ vautour_style.zip</code>
+
+4. Reiniciar el servicio de Nagios.
+
+<a name="6-insa"></a>
+## 6. Monitoreo del servicio de Apache
+
+<a name="6-insa"></a>
+## 6. Monitoreo del servicio de Apache
+
+<a name="6-insa"></a>
+## 6. Monitoreo del servicio de Apache
 
