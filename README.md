@@ -1378,7 +1378,7 @@ define service{
 18. Reiniciar el servicio de Nagios.
 
 
-<a name="-bibl"></a>
+<a name="9-bibl"></a>
 ## 9. Bibliografía
 
 - [Curso de monitoreo con Nagios Core](https://www.youtube.com/playlist?list=PLf0g2cV4iCkE9vRbsSoe5f428zMNlasKd)
