@@ -1195,7 +1195,7 @@ else {
 
 6. Ejecutar el comando <code>perl -MCPAN -e 'install Bundle::LWP’</code>
 
-💡 Verifique el uso del plugin de monitoreo de Apache o si hay algún error ejecutando el mismo con el comando <code>perl check_apachestatus.pl</code>
+💡 **Verifique el uso del plugin de monitoreo de Apache o si hay algún error ejecutando el mismo con el comando** <code>perl check_apachestatus.pl</code>
 
 7. Agregar la definición del comando a <code>/usr/local/nagios/etc/objects/commands.cfg</code>
 
