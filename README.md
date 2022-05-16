@@ -1259,12 +1259,134 @@ define service{
 
 4. Reiniciar el servicio de Nagios.
 
-<a name="6-insa"></a>
-## 6. Monitoreo del servicio de Apache
+<a name="8-grafic"></a>
+## 8. Gráficos con PNP4Nagios
 
-<a name="6-insa"></a>
-## 6. Monitoreo del servicio de Apache
+<a name="81-confserver"></a>
+### 8.1 Configuración en el servidor
 
-<a name="6-insa"></a>
-## 6. Monitoreo del servicio de Apache
+1. Instalar los paquetes <code>yum install rrdtool perl-Time-HiRes rrdtool-perl php-gd php-xml -y</code>
+
+2. Descargar las fuentes de:
+
+
+```
+https://sourceforge.net/projects/pnp4nagios/files/
+
+```
+
+en la máquina virtual ejecutar:
+
+<code>wget https://downloads.sourceforge.net/project/pnp4nagios/PNP-0.6/pnp4nagios-0.6.26.tar.gz</
+
+3. Descomprimir el archivo descargado con <code>tar -xzvf pnp4nagios-0.6.26.tar.gz</code>
+
+4. Acceder al directorio <code>pnp4nagios-0.6.26</code> y ejecutar la configuración con <code>./configure</code>
+
+5. Ejecutar el comando <code>make all</code> para compilar la configuración y luego un <code>make fullinstall</code>
+
+6. Ejecutar el comando <code>chkconfig npcd on</code> para habilitar el servicio de inicio.
+
+7. Reiniciar el servicio de apache con <code>service httpd restart</code>
+
+8. Renombrar el archivo <code>/usr/local/pnp4nagios/share/install.php</code> con <code>mv /usr/local/pnp4nagios/share/install.php /usr/local/pnp4nagios/share/install.php.BKP</code>
+
+9. Editar el archivo <code>/usr/local/nagios/etc/nagios.cfg</code> y agregar al final las siguientes líneas para habilitar el guardado de los datos de performance de los servicios y hosts y decirle a Nagios como manejar tales datos.
+
+```
+process_performance_data=1
+
+  service_perfdata_file=/usr/local/pnp4nagios/var/service-perfdata
+  service_perfdata_file_template=DATATYPE::SERVICEPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tSERVICEDESC::$SERVICEDESC$\tSERVICEPERF
+DATA::$SERVICEPERFDATA$\tSERVICECHECKCOMMAND::$SERVICECHECKCOMMAND$\tHOSTSTATE::$HOSTSTATE$\tHOSTSTATETYPE::$HOSTSTATETYPE$\tSERVICESTAT
+E::$SERVICESTATE$\tSERVICESTATETYPE::$SERVICESTATETYPE$
+  service_perfdata_file_mode=a
+  service_perfdata_file_processing_interval=15
+  service_perfdata_file_processing_command=process-service-perfdata-file
+
+  host_perfdata_file=/usr/local/pnp4nagios/var/host-perfdata
+  host_perfdata_file_template=DATATYPE::HOSTPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tHOSTPERFDATA::$HOSTPERFDATA$\tHOSTCHECKCOMMAN
+D::$HOSTCHECKCOMMAND$\tHOSTSTATE::$HOSTSTATE$\tHOSTSTATETYPE::$HOSTSTATETYPE$
+  host_perfdata_file_mode=a
+  host_perfdata_file_processing_interval=15
+  host_perfdata_file_processing_command=process-host-perfdata-file
+
+```
+
+10. Editar el archivo <code>/usr/local/nagios/etc/objects/commands.cfg</code> y agregar al final las siguientes líneas para el manejo de los archivos de servicios y host. Lo que se hace es mover los archivos de un directorio a otro y poner una marca de tiempo.
+
+```
+define command {
+    command_name process-service-perfdata-file
+    command_line /bin/mv /usr/local/pnp4nagios/var/service-perfdata /usr/local/pnp4nagios/var/spool/service-perfdata.$TIMET$
+ }
+ define command {
+    command_name process-host-perfdata-file
+    command_line /bin/mv /usr/local/pnp4nagios/var/host-perfdata /usr/local/pnp4nagios/var/spool/host-perfdata.$TIMET$
+ }
+
+```
+
+11. Editar el archivo <code>/usr/local/nagios/etc/objects/templates.cfg</code> y agregar al final las siguientes líneas para agregar los botones desde los que se puede acceder a PNP4Nagios.
+
+```
+define host {
+    name host-pnp
+    action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&srv=_HOST_' class='tips' rel='/pnp4nagios/index.php/popup?host=$HOSTNAME$&srv=
+_HOST_
+    register 0
+  }
+
+  define service {
+    name srv-pnp
+    action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&srv=$SERVICEDESC$' class='tips' rel='/pnp4nagios/index.php/popup?host=$HOSTNAM
+E$&srv=$SERVICEDESC$
+    register 0
+  }
+
+```
+
+12. En el directorio <code>pnp4nagios-0.6.26</code> copiar el fichero <code>contrib/ssi/status-header.ssi</code> a la carpeta <code>/usr/local/nagios/share/ssi/</code> con el comando <code>cp contrib/ssi/status-header.ssi /usr/local/nagios/share/ssi/</code> para agregar un hover al botón previamente agregado.
+
+13. Reiniciar el servicio de <code>npcd</code>
+
+14. Reiniciar el servicio de Nagios.
+
+15. Editar el archivo <code>/usr/local/nagios/etc/objects/linux.cfg</code> y agregar <code>host-pnp</code> en la definición de los servidores y <code>srv-pnp</code> en todos los servicios.
+
+```
+define host{
+        use                     linux-server,host-pnp
+        host_name               cliente_linux
+        alias                   Linux Centos
+        address                 192.168.50.2
+}
+
+define service{
+        use                     generic-service,srv-pnp
+        host_name               cliente_linux
+        service_description     Hard Disk
+        check_command           check_nrpe!check_hda1
+}
+
+```
+
+16. Ejecutar el comando <code>sed -i 's:if(sizeof($pages:if(is_array($pages) && sizeof($pages:'/usr/local/pnp4nagios/share/application/models/data.php</code>
+
+17. Cambia todas las líneas donde se define Class Services_JSON por Class __Services_JSON en el archivo <code>/usr/local/pnp4nagios/share/application/lib/json.php</code>
+
+18. Reiniciar el servicio de Nagios.
+
+
+<a name="-bibl"></a>
+## 9. Bibliografía
+
+- [Curso de monitoreo con Nagios Core](https://www.youtube.com/playlist?list=PLf0g2cV4iCkE9vRbsSoe5f428zMNlasKd)
+
+
+
+
+
+
+
 
