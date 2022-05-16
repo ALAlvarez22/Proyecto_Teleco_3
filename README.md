@@ -929,7 +929,40 @@ Del servicio HTTP se puede:
 ```
 <h1>Hola apache</h1></br>
 <p>Página de prueba del servicio de apache en el cliente linux 192.168.50.2</p>
+
 ``` 
+
+6. Editar el archivo <code>/usr/local/nagios/etc/nrpe.cfg</code>
+
+7. Agregar la siguiente línea para definir el comando:
+
+```
+command[check_users]=/usr/local/nagios/libexec/check_users -w 5 -c 10
+command[check_load]=/usr/local/nagios/libexec/check_load -r -w .15,.10,.05 -c .30,.25,.20
+command[check_hda1]=/usr/local/nagios/libexec/check_disk -w 20% -c 10% -p /dev/sda1
+command[check_zombie_procs]=/usr/local/nagios/libexec/check_procs -w 5 -c 10 -s Z
+command[check_total_procs]=/usr/local/nagios/libexec/check_procs -w 150 -c 200
+
+command[check_swap]=/usr/local/nagios/libexec/check_swap -w 20% -c 10%
+command[check_uptime]=/usr/local/nagios/libexec/check_uptime
+
+command[check_mem]=perl /usr/local/nagios/libexec/check_mem.pl -f -C -w 20% -c 10%
+
+#Agregue la siguiente linea#
+command[check_proc_apache]=/usr/local/nagios/libexec/check_procs -c 1: -C httpd
+
+```
+
+8. Reiniciar el servicio de Apache con:
+
+<code>service httpd restart</code>
+
+💡 **Puede verificar que todo funciona correctamente apuntando desde el navegador a la** <code>ip</code> **del cliente y luego agregando en
+la url** <code>/server-status</code>
+
+9. Reiniciar el servicio de NRPE con <code>service nrpe restart</code>
+
+
 
 <a name="62-confser"></a>
 ### 6.2 Configuración del servidor
