@@ -423,9 +423,23 @@ Para solucionar los siguientes problemas que aparecen al entrar a la web de Nagi
 
 <img src="https://github.com/ALAlvarez22/Proyecto_Teleco_3/blob/master/nagios.png">
 
+1. Ejecute el comando <code>df -h</code> para ver el nombre del disco del cliente o la partición del mismo que le interesa monitorear.
 
+2. Edite el archivo <code>/usr/local/nagios/etc/nrpe.cfg</code> en la sección que contiene:
 
+```
+command[check_users]=/usr/local/nagios/libexec/check_users -w 5 -c 10
+command[check_load]=/usr/local/nagios/libexec/check_load -r -w .15,.10,.05 -c .30,.25,.20
+command[check_hda1]=/usr/local/nagios/libexec/check_disk -w 20% -c 10% -p /dev/sda1         #Coloque el nombre de su disco al final
+command[check_zombie_procs]=/usr/local/nagios/libexec/check_procs -w 5 -c 10 -s Z
+command[check_total_procs]=/usr/local/nagios/libexec/check_procs -w 150 -c 200
 
+#Agregue las siguientes lineas#
+command[check_swap]=/usr/local/nagios/libexec/check_swap -w 20% -c 10%
+command[check_uptime]=/usr/local/nagios/libexec/check_uptime
+```
+
+💡**En caso de aparecer algún otro error con cualquier comando puede ir a** <code>/usr/local/nagios/libexec</code> **y ejecutar el comando con** <code>./nombre_comando</code> **y analizar los errores que aparezcan.**
 
 
 
