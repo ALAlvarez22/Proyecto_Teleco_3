@@ -70,9 +70,9 @@ Si el comando inmediatamente anterior no funciona, intentar con:
 
 1. Crear usuario un usuario Nagios y agregarlo como grupo secundario con:
 
-<code>useradd nagios</code>
+  <code>useradd nagios</code>
 
-<code>usermod -a -G nagios apache</code>
+  <code>usermod -a -G nagios apache</code>
 
 2. Obtener los binarios para compilar Nagios desde:
 
