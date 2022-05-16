@@ -57,11 +57,16 @@ gcc             php         gd                  automake
 autoconf        httpd       make                glibc
 gd-devel        net-snmp    perl-Net-SNMP
 ```
-- gettext wget net-snmp-utils openssl-devel
-glibc-common unzip perl epel-release
-gcc php gd automake
-autoconf httpd make glibc
-gd-devel net-snmp perl-Net-SNMP
+<code>yum install -y gettext wget net-snmp-utils openssl-devel glibc-common unzip perl epel-release gcc php gd automake autoconf httpd make glibc
+gd-devel net-snmp</code>
+
+<code>yum --enablerepo=powertools,epel install perl-Net-SNMP</code>
+
+Si el comando inmediatamente anterior no funciona intentar con:
+
+<code>yum config-manager --enable powertools</code>
+
+<code>yum install perl-Net-SNMP</code>
 
 <a name="22-inst"></a>
 ### 2.2 Instalación de las dependencias necesarias para instalar Nagios
