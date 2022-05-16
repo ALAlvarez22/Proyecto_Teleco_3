@@ -8,7 +8,7 @@
 2. [ Pruebas mínimas esperadas ](#pru)
 3. [ Entregables ](#Ent)
 4. [ Conceptos teoricos ](#Conc)
-*    [ Estructura de directorios de Nagios ](#Esc)
+-    [ Estructura de directorios de Nagios ](#Esc)
 
 
 
