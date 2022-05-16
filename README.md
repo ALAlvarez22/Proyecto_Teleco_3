@@ -17,6 +17,17 @@
     + [5.2.1 Instalación de las dependencias necesarias para instalar Nagios](#521-ins)
     + [5.2.2 Instalación de plugins en el servidor](#522-inst)
     + [5.2.3 Descarga de NRPE](#523-desc)
+  * [5.3 Configuraciones del cliente](#53-confc)
+    + [5.3.1 Instalación de las dependencias necesarias para instalar Nagios](#531-inscl)
+    + [5.3.2 Instalación de plugins en el cliente](#532-instcl)
+    + [5.3.3 Descarga de NRPE](#533-descn)
+  * [5.4 Monitoreo básico del cliente](#54-moni)
+    + [5.4.1 Definición en el servidor](#541-defs)
+    + [5.4.2 Configuración del cliente](#542-confcll)
+  * [5.5 Instalar plugin de la comunidad de Nagios para monitorear la memoria RAM de los clientes Linux](#55-insplu)
+    + [5.5.1 Instalación de las dependencias necesarias para instalar Nagios](#551-insdep)
+    + [5.5.2 Instalación de plugins en el servidor](#552-inspser)
+
 
 
 
