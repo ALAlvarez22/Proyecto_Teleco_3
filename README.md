@@ -51,9 +51,11 @@
 ### 2.1 Instalación de las dependencias necesarias para instalar Nagios
 
 ```
-gettext      | wget  | net-snmp-utils | openssl-devel
-glibc-common | unzip | perl           | epel-release
-gcc          | php   | gd             | automake
+gettext         wget        net-snmp-utils      openssl-devel
+glibc-common    unzip       perl                epel-release
+gcc             php         gd                  automake
+autoconf        httpd       make                glibc
+gd-devel        net-snmp    perl-Net-SNMP
 ```
 - gettext wget net-snmp-utils openssl-devel
 glibc-common unzip perl epel-release
