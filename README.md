@@ -902,6 +902,35 @@ Del servicio HTTP se puede:
 <a name="61-confcli"></a>
 ### 6.1 Configuración del cliente
 
+1. Instalar el servicio de Apache con:
+
+<code>yum install -y httpd</code>
+
+2. Habilitar por defector el servicio de HTTP con:
+
+<code>chkconfig httpd on</code>
+
+3. En caso de tener el Firewall habilitado agregar el servicio de <code>httpd</code>y el puerto <code>80</code>
+
+4. Habilitar el server status agregando al final las siguientes líneas al archivo principal de configuración del apache que se encuentra en <code>/etc/httpd/conf</code> y lleva por nombre <code>httpd.conf</code>
+
+```
+<location /server-status>
+        setHandler server-status
+        Order deny,allow
+        Deny from all
+        Allow from 192.168.50.0/24      #Red desde la que se podrá acceder al location
+</location>
+
+``` 
+
+5. Crear y editar el archivo <codeindex.html</code> con <code>vim /var/www/html/index.html</code> y agregar las líneas
+
+```
+<h1>Hola apache</h1></br>
+<p>Página de prueba del servicio de apache en el cliente linux 192.168.50.2</p>
+``` 
+
 <a name="62-confser"></a>
 ### 6.2 Configuración del servidor
 
