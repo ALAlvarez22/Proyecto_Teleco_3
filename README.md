@@ -165,11 +165,36 @@ wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.
 5. Reiniciar el servicio de Nagios.
 
 
-**Los plugins se instalan en el directorio** <code>/usr/local/nagios/libexec/</code> **y dentro del directorio se puede ejecutar el comando**
+💡**Los plugins se instalan en el directorio** <code>/usr/local/nagios/libexec/</code> **y dentro del directorio se puede ejecutar el comando**
 <code>./plugin_name --help</code> **para ver como se usa dicho plugin.**
 
 <a name="23-desc"></a>
 ### 2.3 Descarga de NRPE
+
+1. Obtener el NRPE de:
+
+```
+https://github.com/NagiosEnterprises/nrpe/releases
+```
+
+En la máquina virtual:
+
+```
+wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+```
+
+2. Descomprimir los archivos con:
+
+<code>tar -xzvf nrpe-4.0.3</code>
+
+3. Dentro del directorio descomprimido se ingresa el comando:
+
+<code>./configure</code>
+
+**En NRPE funciona en el puerto 5666, por lo que en todos los clientes donde se vaya a instalar el NRPE con los plugins
+se debe habilitar este puerto en los plugins.**
+
+
 
 
 
