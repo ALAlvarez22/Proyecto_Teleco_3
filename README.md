@@ -138,6 +138,36 @@ Se puede verificar la correcta activación con:
 <a name="22-inst"></a>
 ### 2.2 Instalación de plugins en el servidor
 
+1. Obtener los plugins de:
+
+```
+https://github.com/nagios-plugins/nagios-plugins/releases
+```
+
+En la máquina virtual:
+
+```
+wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+```
+
+2. Descomprimir los archivos con:
+
+<code>tar -xzvf nagios-plugins-4.4.7.tar.gz</code>
+
+3. Dentro del directorio del archivo descomprimido se ingresa el comando:
+
+<code>./configure</code>
+
+4. Hacer la instalación con:
+
+<code>make install</code>
+
+5. Reiniciar el servicio de Nagios.
+
+
+Los plugins se instalan en el directorio <code>/usr/local/nagios/libexec/</code> y dentro del directorio se puede ejecutar el comando
+<code>./plugin_name --help</code> para ver como se usa dicho plugin.
+
 <a name="23-desc"></a>
 ### 2.3 Descarga de NRPE
 
