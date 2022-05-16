@@ -34,7 +34,7 @@
 
 - Instalar vim y net-tools.
 
-  $ yum install -y vim net-tools
+  <code>$ yum install -y vim net-tools</code>
 
 - Deshabilitar SELinux.
 
