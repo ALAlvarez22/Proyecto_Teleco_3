@@ -217,7 +217,6 @@ define command {
 
 ```
 
-💡 
 **$USER1$** es una variable que indica /usr/local/nagios/libexec
 
 **check_nrpe** es el comando compilado con el que Nagios va a checkear el NRPE en los clientes
