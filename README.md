@@ -136,10 +136,10 @@ Se puede verificar la correcta activación con:
 
 
 <a name="22-inst"></a>
-### 2.2 Instalación de las dependencias necesarias para instalar Nagios
+### 2.2 Instalación de plugins en el servidor
 
 <a name="23-desc"></a>
-### 2.3 Instalación de las dependencias necesarias para instalar Nagios
+### 2.3 Descarga de NRPE
 
 
 
