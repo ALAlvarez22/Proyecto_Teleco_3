@@ -13,7 +13,7 @@
   * [3.1 Instalación de las dependencias necesarias para instalar Nagios](#31-inscl)
   * [3.2 Instalación de plugins en el cliente](#32-instcl)
   * [3.3 Descarga de NRPE](#33-descn)
-- [4. Monitoreo básico del cliente](#4-moni)
+- [4. Monitoreo básico de los clientes](#4-moni)
   * [4.1 Definición en el servidor](#41-defs)
   * [4.2 Configuración del cliente](#42-confcll)
 - [5. Instalar plugin de la comunidad de Nagios para monitorear la memoria RAM de los clientes Linux](#5-insplu)
@@ -150,7 +150,7 @@ https://github.com/nagios-plugins/nagios-plugins/releases
 En la máquina virtual:
 
 ```
-wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+wget https://github.com/nagios-plugins/nagios-plugins/releases/download/release-2.4.0/nagios-plugins-2.4.0.tar.gz
 ```
 
 2. Descomprimir los archivos con:
@@ -183,7 +183,7 @@ https://github.com/NagiosEnterprises/nrpe/releases
 En la máquina virtual:
 
 ```
-wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-4.0.3/nrpe-4.0.3.tar.gz
 ```
 
 2. Descomprimir los archivos con:
@@ -268,7 +268,7 @@ https://github.com/nagios-plugins/nagios-plugins/releases
 En la máquina virtual ejecutar el siguiente comando:
 
 ```
-wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+wget https://github.com/nagios-plugins/nagios-plugins/releases/download/release-2.4.0/nagios-plugins-2.4.0.tar.gz
 ```
 
 2. Descomprimir los archivos con:
@@ -301,7 +301,7 @@ https://github.com/NagiosEnterprises/nrpe/releases
 En la máquina virtual:
 
 ```
-wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.7/nagios-4.4.7.tar.gz
+wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-4.0.3/nrpe-4.0.3.tar.gz
 ```
 
 2. Descomprimir los archivos con:
@@ -337,7 +337,7 @@ allowed_host=127.0.0.0.1,::1,192.168.50.3
 
 
 <a name="4-moni"></a>
-## 4. Monitoreo básico del cliente
+## 4. Monitoreo básico de los clientes
 
 <a name="41-defs"></a>
 ### 4.1 Definición en el servidor
@@ -350,52 +350,78 @@ allowed_host=127.0.0.0.1,::1,192.168.50.3
 ########## Definicion de servidores ###########
 
 define host{
-        use                 linux-server        #template de teplates.cfg a utilizar
-        host_name           cliente_linux   
-        alias               Linux Centos
-        check_interval      1                   #intervalo en mins con que es monitoreado
-        address             192.168.50.2        #dirección ip del host
+
+        use                         linux-server #template de teplates.cfg a utilizar
+        host_name                   cliente_linux
+        alias                       Linux Centos
+        check_interval              1 #intervalo en mins con que es monitoreado
+        address                     192.168.50.2 #dirección ip del host
+}
+
+define host{
+        use                         linux-server
+        host_name                   cliente_linux_2
+        alias                       Linux Centos 2
+        check_interval              1
+        address                     192.168.50.4
+}
+
+########## Definicion de hostgroups ###########
+
+define hostgroup{
+        hostgroup_name              clientes_linux
+        alias                       clientes_linux
+        members                     cliente_linux,cliente_linux_2
 }
 
 ########## Definicion de servicios ###########
+
 define service{
-        use                     generic-service         #template de teplate.cfg a utilizar
-        host_name               cliente_linux
-        service description     Hard Disk               #opcional
-        check_interval          1
-        check_command           check_nrpe!check_hda1
+        use                         generic-service #template de teplate.cfg a utilizar
+        hostgroup_name              clientes_linux
+        service description         Hard Disk #opcional
+        check_interval              1
+        check_command               check_nrpe!check_hda1
 }
 
 define service{
-        use                     generic-service
-        host_name               cliente_linux
-        service_description     Uptime
-        check_interval          1
-        check_command           check_nrpe!check_uptime
+        use                         generic-service
+        hostgroup_name              clientes_linux
+        service_description         Uptime
+        check_interval              1
+        check_command               check_nrpe!check_uptime
 }
 
 define service{
-        use                     generic-service
-        host_name               cliente_linux
-        service_description     Current Load
-        check_interval          1
-        check_command           check_nrpe!check_load
+        use                         generic-service
+        hostgroup_name              clientes_linux
+        service_description         Current Load
+        check_interval              1
+        check_command               check_nrpe!check_load
 }
 
 define service{
-        use                     generic-service
-        host_name               cliente_linux
-        service_description     Swap
-        check_interval          1
-        check_command           check_nrpe!check_swap
+        use                         generic-service
+        hostgroup_name              clientes_linux
+        service_description         Swap
+        check_interval              1
+        check_command               check_nrpe!check_swap
 }
 
 define service{
-        use                     generic-service
-        host_name               cliente_linux
-        service_description     Current Users
-        check_interval          1
-        check_command           check_nrpe!check_users
+        use                         generic-service
+        hostgroup_name              clientes_linux
+        service_description         Ping
+        check_interval              1
+        check_command               check_ping!500.0,20%!800.0,60% #warning-critical
+}
+
+define service{
+        use                         generic-service
+        hostgroup_name              clientes_linux
+        service_description         Current Users
+        check_interval              1
+        check_command               check_nrpe!check_users
 }
        
 ```
@@ -405,6 +431,10 @@ define service{
 templates en uso.**
 
 3. En el directorio <code>/usr/local/nagios/etc</code> editar el archivo <code>nagios.cfg</code> y agregar el archivo creado como uno de los archivos de configuración.
+
+```
+cfg_file=/usr/local/nagios/etc/objects/linux.cfg
+```
 
 4. Verifique que no hayan errores en las sentencias de los archivos de nagios con los comandos:
 
