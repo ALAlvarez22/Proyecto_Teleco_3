@@ -1379,7 +1379,7 @@ define service{
 
 
 <a name="9-bibl"></a>
-## 9. Bibliografía
+## 9. Bibliografí
 
 - [Curso de monitoreo con Nagios Core](https://www.youtube.com/playlist?list=PLf0g2cV4iCkE9vRbsSoe5f428zMNlasKd)
 
