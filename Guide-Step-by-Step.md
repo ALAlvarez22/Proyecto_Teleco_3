@@ -20,12 +20,15 @@
   * [5.1 Configuración en el cliente](#51-insdep)
   * [5.2 Configuración en el servidor](#52-inspser)
 - [6. Monitoreo del servicio de Apache (HTTP)](#6-insa)
-  * [6.1 Configuración del cliente](#61-confcli)
+  * [6.1 Configuración del cliente Linux 1](#61-confcli)
   * [6.2 Configuración del servidor](#62-confser)
-- [7. Cambiar la apariencia de Nagios](#7-apar)
-- [8 Gráficos con PNP4Nagios](#8-grafic)
-  * [8.1 Configuración en el servidor](#81-confserver)
-- [9. Bibliografía](#9-bibl)
+- [7. Monitoreo del servicio de FTP](#7-ftp)
+  * [7.1 Configuración del cliente Linux 2](#71-confcliftp)
+  * [7.2 Configuración del servidor](#72-confserftp)
+- [8. Cambiar la apariencia de Nagios](#8-apar)
+- [9. Gráficos con PNP4Nagios](#9-grafic)
+  * [9.1 Configuración en el servidor](#91-confserver)
+- [10. Bibliografía](#10-bibl)
 
 <a name="1-prep"></a>
 ## 1. Preparación de las máquinas virtuales
@@ -900,7 +903,7 @@ Del servicio HTTP se puede:
   * Cantidad de slots inactivos.
 
 <a name="61-confcli"></a>
-### 6.1 Configuración del cliente
+### 6.1 Configuración del cliente Linux 1
 
 1. Instalar el servicio de Apache con:
 
@@ -1248,8 +1251,38 @@ define service{
 
 10. Reiniciar el servicio de Nagios.
 
-<a name="7-apar"></a>
-## 7. Cambiar la apariencia de Nagios
+<a name="7-ftp"></a>
+## 7. Monitoreo del servicio de FTP
+
+<a name="71-conflcliftp"></a>
+### 7.1 Configuración del cliente Linux 2
+
+1. Instalar el servicio de FTP con el comando <code>yum install vsftpd -y</code>
+
+2. Habilitar el servicio de arranque con el comando <code>chkconfig vsftpd on</code>
+
+3. Iniciar el servicio con <code>service vsftpd start</code>
+
+4. De ser necesario habilitar el servicio de firewall con el comando <code>firewall-cmd —add-service-ftp —permanent</code>
+
+<a name="72-confserftp"></a>
+### 7.2 Configuración del servidor
+
+1. Editar el fichero <code>vim /usr/local/nagios/etc/objects/linux.cfg</code> y agregar el servicio
+
+```
+define service{
+        use                                         generic-service,srv-pnp
+        host_name                                   cliente_linux_2
+        service_description                         Control ftp
+        check_command                               check_ftp!21
+}
+```
+2. Reiniciar el servicio de nagios <code>con service nagios restart</code>
+
+
+<a name="8-apar"></a>
+## 8. Cambiar la apariencia de Nagios
 
 1. Ejecutar el comando <code>wget https://github.com/ynlamy/vautour-style/releases/latest/download/vautour_style.zip</code>
 
@@ -1259,11 +1292,11 @@ define service{
 
 4. Reiniciar el servicio de Nagios.
 
-<a name="8-grafic"></a>
-## 8. Gráficos con PNP4Nagios
+<a name="9-grafic"></a>
+## 9. Gráficos con PNP4Nagios
 
-<a name="81-confserver"></a>
-### 8.1 Configuración en el servidor
+<a name="91-confserver"></a>
+### 9.1 Configuración en el servidor
 
 1. Instalar los paquetes <code>yum install rrdtool perl-Time-HiRes rrdtool-perl php-gd php-xml -y</code>
 
@@ -1378,8 +1411,8 @@ define service{
 18. Reiniciar el servicio de Nagios.
 
 
-<a name="9-bibl"></a>
-## 9. Bibliografí
+<a name="10-bibl"></a>
+## 10. Bibliografía
 
 - [Curso de monitoreo con Nagios Core](https://www.youtube.com/playlist?list=PLf0g2cV4iCkE9vRbsSoe5f428zMNlasKd)
 
